@@ -17,8 +17,9 @@ var BookInstance = require('./models/bookinstance')
 
 
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var mongoDB = userArgs[0];
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {useMongoClient: true});
 var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
